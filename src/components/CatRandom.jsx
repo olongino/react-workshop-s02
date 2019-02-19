@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import logoDefault from './logo.svg';
 import {fetchRandomCat} from '../utils/api';
 
 class CatRandom extends Component {
   constructor(props){
     super(props);
-    this.state = { logo: undefined };
+    this.state = { logo: logoDefault };
   }
   componentDidMount() {
     fetchRandomCat(data => 
@@ -16,9 +17,8 @@ class CatRandom extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        {!logo
-          ? <p>LOADING!</p>
-          :  <img src={logo} className="App-logo" alt="logo" /> }
+          <img src={logo} className="App-logo" alt="logo" /><br/>
+          <button>click me</button>
         </header>
       </div>
     );

@@ -12,22 +12,15 @@ class DogBreads extends Component {
       this.setState(
         {breeds: Object.entries(data.message)}
       )
-      
-      );
-
-
-
+    );
   }
 
   render() {
     const  {breeds} = this.state;
     return (
-      <div>
-        
+      <div>        
         <ul>
-        { breeds.map( breed=> <li key={breed} >{breed} </li> )
-         
-          }
+          {breeds.map( breed=> <li key={breed} >{breed} </li> )}
         </ul>
       </div>
     );
