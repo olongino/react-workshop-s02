@@ -5,6 +5,7 @@ class DogBreads extends Component {
   constructor(props){
     super(props);
     this.state = { breeds: [] };
+    this.destroyArray = this.destroyArray.bind(this);
   }
   
   componentDidMount() {
@@ -15,20 +16,28 @@ class DogBreads extends Component {
     );
   }
 
+  destroyArray(breeds){
+    let list = [];
+    let index = list.length;
+    for(const[dog, dogs] of breeds){
+      list.push(<li className="dogsFathers" key={index} >{dog}</li>);
+      if(dogs.length >= 1){
+        for(let i=0; i<dogs.length; i++){
+          index++;
+          list.push(<li className="dogsChildren"  key={index}>-{dogs[i]}</li>)
+        }
+      }
+      index++;
+    } 
+    return list;
+  }
+
   render() {
     const  {breeds} = this.state;
-    let subreeds = [];  
-    breeds.map( (breed, index) => {
-      subreeds.push(<li className="dogsFathers" key={breed[0].concat(index)}>{breed[0]}</li>);
-      breed[1].forEach((val, indice) => { subreeds.push(<li className="dogsChildren" key={breed[0].concat(indice)} >-{val}</li>); })
-      return 0;
-    }); 
     return (
       <div>
           <ul className="dogsList">
-              {
-                subreeds.map( (breed) => breed)
-              }
+              { this.destroyArray(breeds) }
           </ul>
       </div>
     );
